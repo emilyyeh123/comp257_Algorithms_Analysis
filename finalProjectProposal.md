@@ -1,7 +1,6 @@
 # Project Proposal 
 
-Given time constraints and the complexity of my [original project proposal](COMP%20257%20hw8%20project%20proposal.pdf), I decided to choose a new problem.
-The pseudocode for the following problem was provided by the professor and is listed below.
+Given time constraints and challenges with the brute force method in my [original project proposal](COMP%20257%20hw8%20project%20proposal.pdf), I decided to choose a new problem. The pseudocode for the following problem was provided by the professor and is further described below.
 
 ## Problem: Weighted Coins Game
 You are playing a game with a friend: There are some number of coins lined up in front of you from left to right.
