@@ -36,9 +36,11 @@ The following pseudocode is a brute force method that shows all possible paths p
 function coinsGame_BruteForce(n, L)
   # Create list of tuples
   # Initially, this stores p1's first possible moves
+  # Tuple: (leftIndex, rightIndex, p1 current value)
   partialSolutions = [(leftCoin: 1, rightCoin: n - 1, value: L[0]),(leftCoin: 0, rightCoin: n - 2, value: L[n-1])]
   
   for i in range(1,n):
+    # reset temp var
     temp = []
     
     for sol in partialSolutions:
@@ -52,54 +54,62 @@ function coinsGame_BruteForce(n, L)
         temp.append(rightSol)
       
       else: # player 2's turn
-        dir = dir(sol["leftCoin"], sol["rightCoin"], L)
+        p2_move = p2_choice(sol["leftCoin"], sol["rightCoin"], L)
         
-        if dir == "0":
+        if p2_move == "0":
           temp.append( (leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"]) )
         else
           temp.append( (leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"]) )
+      
+      # override partial solutions with temp
+      partialSolutions = temp
   
   return maximum value of partialSolutions (3rd element in tuples)
 ```
 
-I tested this on an example of size n = 6 with list L = [3,4,1,2,5,4]
+I tested this on a sample list L = [3,4,1,2,5,4]. I wrote out the tuples output by each player. These are all possible outputs of the player based off the last possible moves. P2 always matches the amount of optional moves that p1 previously took, but for each time p1 takes a turn, the amount of options doubles.
 
 <kbd> <img src=/images/n6_bruteForce_example.png alt="" width="500"/> </kbd>
 
-This has a runtime of O(n<sup>2</sup>(n/2)). From the image, we can see how the algorithm would grow polynomially. p2 will always have the same number of options as p1, but p1's options grow exponentially each time it gains new values.
+From the example, we can see how the algorithm would produce a runtime of O(n<sup>2</sup>(n/2)). P1's options grow exponentially each time it gains new values.
 
 ## Greedy Approach
-The simplest greedy algorithm for this problem is for player 1 to always take the larger coin available (player 2 will still always make the optimal choice, so we still need access to our `DP` array and function `dir()` described above).
+The greedy algorithm takes a more direct approach where p1 will always take the larger available coin. P2 will continue choosing the optimal solution based off p1's move. This approach does not take a whole lot of memory as it simply takes the first number that would seem to be largest, adds that value to the current sum, then increments/decrements the appropriate counter.
 
 ```
 function coinsGame_Greedy(n, L)
-  winnings = 0
-  left = 0
-  right = n - 1
+  sum = 0
+  leftIndex = 0
+  rightIndex = n - 1
   
   for i in range(n):
-    if i % 2 == 0:
-      if L[left] > L[right]:
-        winnings += L[left]
-        left += 1
+    if i % 2 == 0: # player 1 turn
+      if L[leftIndex] > L[rightIndex]:
+        sum += L[leftIndex]
+        leftIndex += 1
       else
-        winnings += L[right]
-        right -= 1
+        sum += L[rightIndex]
+        rightIndex -= 1
         
-    else
-      dir = dir(left, right, L)
+    else: # player 2 turn, use DP to find optimal move at this point
+      p2_move = p2_choice(sol["leftCoin"], sol["rightCoin"], L)
       if dir == "0":
-        left += 1
+        leftIndex += 1
       else
-        right -= 1
+        rightIndex -= 1
   
-  return winnings
+  return sum
 ```
 
-The runtime of this algorithm will be O(n) because there is one for loop with n iterations, and there are a constant number of operations within the for loop.
+Here is an example of how the algorithm would work on list L = [3,4,1,2,5,4], where n = 6.
 
+<kbd> <img src=/images/n6_greedyExample.png alt="" width="500"/> </kbd>
+
+The runtime is O(n) because there is one loop that goes through all n elements in the list. All other operations are constant and don't add significant changes to the runtime.
 
 ## Memoization Approach
+THIS IS AN APPROACH PROVIDED BY THE PROFESSOR. I DID NOT TAKE THIS APPROACH AS I OPTED FOR THE DYNAMIC PROGRAMMING VERSION, BUT I PLACED THE PROFESSOR'S APPROACH HERE FOR REFERENCE IN CASE I WANTED TO TRY TO IMPLEMENT IT IN THE FUTURE.
+
 Let `OPT(i, j)` be the amount of winnings you’re guaranteed, regardless of the behavior of player 2, if you’re faced with coins `i` through `j` in a row with `i < j`. Then `OPT(i, j)` will be the maximum amount that can be won if player 2 plays optimally. If player 1 chooses the left coin, then we can take the minimum winnings for player 1 based on whether player 2 chooses the left- or right-most coin. Then the recurrence is the following:
 
 `OPT(i, j) = max( L[i] + min( OPT(i+2, j), OPT(i+1, j−1) ), L[j] + min( OPT(i+1, j−1), OPT(i, j−2) ) )`
@@ -123,7 +133,11 @@ function coinsGame_Memoization(L,i, j)
 The memoization array will be of size n × n, and the function itself takes constant time, so this algorithm will be O(n<sup>2</sup>). We only need to fill the entries of the array where j ≥ i, but this is still O(n<sup>2</sup>).
 
 ## Dynamic Programming
-Here is the dynamic programming solution. Note that we need to iterate through the array diagonally.
+The dynamic programming approach involves creating a 2D array to store all possible moves. The following pictures show how the array is initialized.
+
+<kbd> <img src=/images/dynamic_programming_visual_example.png alt="" width="500"/> </kbd>
+
+<kbd> <img src=/images/dynamic_programming_example_n6.png alt="" width="500"/> </kbd>
 
 ```
 function coinsGame_DP(n, L)
@@ -143,10 +157,4 @@ function coinsGame_DP(n, L)
         DP[i,j] = max(chooseLeft, chooseRight)
 ```
 
-This array is size O(n<sup>2</sup>). We have to iterate diagonally over the array so that we will always have access to the entries we need for our recursive formula.
-
-A couple of visualizations to better understand how the dynamic programming algorithm works:
-
-<kbd> <img src=/images/dynamic_programming_visual_example.png alt="" width="500"/> </kbd>
-
-<kbd> <img src=/images/dynamic_programming_example_n6.png alt="" width="500"/> </kbd>
+Creating the array requires a polynomial runtime of O(n<sup>2</sup>). If we refer to the images, we can see that the runtime actually turns out to be less than n<sup>2</sup> because the bottom left half of the matrix is is never filled. But overall, the algorithm produces a runtime of n<sup>2</sup>.
