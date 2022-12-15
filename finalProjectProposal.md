@@ -1,63 +1,72 @@
 # Project Proposal 
 
-Given time constraints and challenges with the brute force method in my [original project proposal](COMP%20257%20hw8%20project%20proposal.pdf), I decided to choose a new problem. The pseudocode for the following problem was provided by the professor and is further described below.
+Given time constraints and challenges with the brute force method in my [original project proposal](COMP%20257%20hw8%20project%20proposal.pdf), I decided to choose a new problem.
 
 ## Problem: Weighted Coins Game
 You are playing a game with a friend: There are some number of coins lined up in front of you from left to right. On your turn, you can remove either the left-most coin or the right-most coin and add it to your collection. You go first, and after that you and your friend alternate turns. After all the coins are removed, each of your scores is the sum of the values of the coins in your pile. Given the order of the coins, if you go first and play optimally, how much money are you guaranteed to win? Meaning, even if your friend plays optimally, how much will you win?
 
 ### Inputs:
-- n: an integer representing the number of coins.
-- L: a list of length n. The ith entry represents the value of the ith coin.
+- int n represents the number of coins
+- list L is of length n and is used to store the values of each coin
 
-### Outputs:
-- W: the amount of money you are guaranteed to win.
+### Output:
+- The highest possible value you can win if both you and your friend are playing optimally
 
-## Brute Force Approach
-For this brute force solution, we need to find every possible set of choices player 1 could make, given that player 2 is playing optimally. Because player 2 is playing optimally, we’ll actually need the dynamic programming solution (described below) to make player 2’s choices. Let DP be the dynamic programming array such that `DP(i, j)` is equal to the maximum value that is guaranteed if the coins in front of you are coins i through j and it is your turn. Assume 0 means choose the left-most coin (coin i), and 1 means choose the right-most coin (coin j).
+## Preface to all pseudocode and solutions
+The professor provided pseudocode and analysis for some given problems. Since I started this project over from scratch, I used the professor's pseudocode as guidelines to understand this problem better and be able to write my own analysis on it. I have expanded on the pseudocode and included images of my thought process to explain each algorithm better and show how the pseudocode is expected to work.
 
-We’ll define a function that tells us which coin to pick next if coins i through j are in front of us:
+Since the problem requires that player 2 always plays optimally, one important point to note is that both the greedy algorithm and brute force approach require player 2 to utilize the DP algorithm to make optimal decisions. The DP algorithm is described towards the bottom of this proposal. For now, we'll assume that DP is a globally accessible 2D array that is initialized by the DP algorithm. Given coins `i` through `j`, `DP[i][j]` is guaranteed to be the maximum value that player 2 would choose based off player 1's previous move.
+
+To help know which coin player 2 will pick next, we have created a function that outputs a 0 if the left-most coin (i) is more optimal or a 1 if the right-most coin (j) is more optimal. 
 ```
-function dir(i, j, L)
-  leftVal = L[i] + min(DP[i + 1, j - 1], DP[i + 2, j])
-  rightVal = L[j] + min(DP[i + 1, j - 1], DP[i, j - 2])
+function p2_choice(i, j, L)
+  chooseLeftCoin = L[i] + min(DP[i + 1, j - 1], DP[i + 2, j])
+  chooseRightCoin = L[j] + min(DP[i + 1, j - 1], DP[i, j - 2])
   
-  if leftVal >= rightVal:
+  if chooseLeftCoin >= chooseRightCoin:
     return “0”
   else
     return “1”
 ```
 
-Then our brute force algorithm will iterate over every possible set of choices player 1 could make, given that player 2 is making the optimal choices. We’ll keep track of each partial solution’s value, and then find the maximum of all of these values at the end.
+## Brute Force Approach
+The following pseudocode is a brute force method that shows all possible paths player 1 could choose. Every variation of p1 (player 1) picking a specific coin is stored and saved such that the max value can be output at the end. Further description is explained in pseudocode comments and a following image.
 
 ```
 function coinsGame_BruteForce(n, L)
+  # Create list of tuples
+  # Initially, this stores p1's first possible moves
   partialSolutions = [(leftCoin: 1, rightCoin: n - 1, value: L[0]),(leftCoin: 0, rightCoin: n - 2, value: L[n-1])]
   
   for i in range(1,n):
-    newSolutions = []
+    temp = []
     
     for sol in partialSolutions:
       # player 1’s turn
       if i % 2 == 0:
         # increment left counter and update value with the removed left coin
         leftSol = ( leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"] + L[sol["leftCoin"]] )
-        newSolutions.append(leftSol)
+        temp.append(leftSol)
         # decrement right counter and update value with the removed right coin
         rightSol = ( leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"] + L[sol["rightCoin"]] )
-        newSolutions.append(rightSol)
+        temp.append(rightSol)
       
-      else # player 2's turn
+      else: # player 2's turn
         dir = dir(sol["leftCoin"], sol["rightCoin"], L)
         
         if dir == "0":
-          newSol = (leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"])
+          temp.append( (leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"]) )
         else
-          newSol = (leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"])
+          temp.append( (leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"]) )
   
-  return maximum value of partialSolutions
+  return maximum value of partialSolutions (3rd element in tuples)
 ```
 
-The runtime of this algorithm is O(n<sup>2</sup>(n/2)) because for each of player 1’s n/2 picks, there are two different solutions that we have to build, and each solution is of length n.
+I tested this on an example of size n = 6 with list L = [3,4,1,2,5,4]
+
+<kbd> <img src=/images/n6_bruteForce_example.png alt="" width="500"/> </kbd>
+
+This has a runtime of O(n<sup>2</sup>(n/2)). From the image, we can see how the algorithm would grow polynomially. p2 will always have the same number of options as p1, but p1's options grow exponentially each time it gains new values.
 
 ## Greedy Approach
 The simplest greedy algorithm for this problem is for player 1 to always take the larger coin available (player 2 will still always make the optimal choice, so we still need access to our `DP` array and function `dir()` described above).
@@ -137,5 +146,7 @@ function coinsGame_DP(n, L)
 This array is size O(n<sup>2</sup>). We have to iterate diagonally over the array so that we will always have access to the entries we need for our recursive formula.
 
 A couple of visualizations to better understand how the dynamic programming algorithm works:
-![generic example](/images/dynamic_programming_visual_example.png)
-![example with a list of n=6](/images/dynamic_programming_example_n6.png)
+
+<kbd> <img src=/images/dynamic_programming_visual_example.png alt="" width="500"/> </kbd>
+
+<kbd> <img src=/images/dynamic_programming_example_n6.png alt="" width="500"/> </kbd>
