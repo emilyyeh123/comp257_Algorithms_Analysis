@@ -4,7 +4,7 @@ import random
 
 def main():
     print("5 random test cases of varying sizes. Range of coin values between 1-5.\n")
-    testCaseSizes = [5,10,20,50,100]
+    testCaseSizes = [10,15,20,35,50]
     for testcase in testCaseSizes:
         L = [0] * testcase
         for i in range(testcase):

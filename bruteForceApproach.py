@@ -40,16 +40,18 @@ def coinsGame_bf(n,L,dp_arr):
 
             # player 2's turn using optimal DP solution
             else:
-                p2_choice = chooseCoin_bf(choice[0], choice[1], L, dp_arr)
+                # leftIndex cannot exceed n-3
+                if choice[0] <= n-3:
+                    p2_choice = chooseCoin_bf(choice[0], choice[1], L, dp_arr)
 
-                # do not update value, p2's value is negligible!
-                if p2_choice == 0:
-                    tempOptions.append( (choice[0] + 1, choice[1], choice[2]) )
-                if p2_choice == 1:
-                    tempOptions.append( (choice[0], choice[1] - 1, choice[2]) )
+                    # do not update value, p2's value is negligible!
+                    if p2_choice == 0:
+                        tempOptions.append( (choice[0] + 1, choice[1], choice[2]) )
+                    if p2_choice == 1:
+                        tempOptions.append( (choice[0], choice[1] - 1, choice[2]) )
 
         currOptions = tempOptions
-
+    
     possibleValues = []
     for i in currOptions:
         possibleValues.append(i[2])
