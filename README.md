@@ -21,11 +21,11 @@ Overview: choose a problem, design several algorithmic approaches to solve it, i
     2. Write the algorithm in pseudocode.
     3. Analyze the complexity of the algorithm using big O notation.
 
-### Final Project
+### [Final Project](projectReport.md)
 1. Implement each algorithm in desired language
-    1. [Brute Force Approach](bruteForceApproach.py)
-    2. [Greedy Approach](greedyApproach.py)
-    3. [Dynamic Programming Approach](dynamicProgrammingApproach.py)
+    1. [Brute Force Approach](/algorithms/bruteForceApproach.py)
+    2. [Greedy Approach](/algorithms/greedyApproach.py)
+    3. [Dynamic Programming Approach](/algorithms/dynamicProgrammingApproach.py)
 2. Design five test cases of varying sizes, and run each of your algorithms on the test cases
     1. Check that each approach returns the same answer for each test case. Note that your greedy algorithm is not guaranteed to find the optimal solution. If this is the case, discuss why the greedy algorithm returns a different answer than the other algorithms.
     2. Time each of your algorithms on each test case and report their runtimes (note: if some of your approaches take too long on large test cases, you can just run them on the small test cases. Justify this by referring to the big O runtime you calculated for the algorithm).
