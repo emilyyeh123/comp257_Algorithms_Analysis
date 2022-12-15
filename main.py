@@ -35,7 +35,8 @@ def main():
     print("input n = ", n, "\ninput L = ", L, "\n")
 
     start_time = time.time()
-    print("\n", coinsGame_dp(n,L))
+    # print("\n", coinsGame_dp(n,L))
+    print("\n", coinsGame_BF(n,L))
     print("\n----- RUNTIME OF THIS ALGO: %s seconds -----" % (time.time() - start_time))
 
 if __name__ == "__main__":

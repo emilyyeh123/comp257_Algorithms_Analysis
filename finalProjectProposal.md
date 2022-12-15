@@ -3,12 +3,7 @@
 Given time constraints and challenges with the brute force method in my [original project proposal](COMP%20257%20hw8%20project%20proposal.pdf), I decided to choose a new problem. The pseudocode for the following problem was provided by the professor and is further described below.
 
 ## Problem: Weighted Coins Game
-You are playing a game with a friend: There are some number of coins lined up in front of you from left to right.
-On your turn, you can remove either the left-most coin or the right-most coin and add it to your collection.
-You go first, and after that you and your friend alternate turns.
-After all the coins are removed, each of your scores is the sum of the values of the coins in your pile.
-Given the order of the coins, if you go first and play optimally, how much money are you guaranteed to win?
-Meaning, even if your friend plays optimally, how much will you win?
+You are playing a game with a friend: There are some number of coins lined up in front of you from left to right. On your turn, you can remove either the left-most coin or the right-most coin and add it to your collection. You go first, and after that you and your friend alternate turns. After all the coins are removed, each of your scores is the sum of the values of the coins in your pile. Given the order of the coins, if you go first and play optimally, how much money are you guaranteed to win? Meaning, even if your friend plays optimally, how much will you win?
 
 ### Inputs:
 - n: an integer representing the number of coins.
@@ -18,10 +13,7 @@ Meaning, even if your friend plays optimally, how much will you win?
 - W: the amount of money you are guaranteed to win.
 
 ## Brute Force Approach
-For this brute force solution, we need to find every possible set of choices player 1 could make, given that player 2 is playing optimally.
-Because player 2 is playing optimally, we’ll actually need the dynamic programming solution (described below) to make player 2’s choices.
-Let DP be the dynamic programming array such that `DP(i, j)` is equal to the maximum value that is guaranteed if the coins
-in front of you are coins i through j and it is your turn. Assume 0 means choose the left-most coin (coin i), and 1 means choose the right-most coin (coin j).
+For this brute force solution, we need to find every possible set of choices player 1 could make, given that player 2 is playing optimally. Because player 2 is playing optimally, we’ll actually need the dynamic programming solution (described below) to make player 2’s choices. Let DP be the dynamic programming array such that `DP(i, j)` is equal to the maximum value that is guaranteed if the coins in front of you are coins i through j and it is your turn. Assume 0 means choose the left-most coin (coin i), and 1 means choose the right-most coin (coin j).
 
 We’ll define a function that tells us which coin to pick next if coins i through j are in front of us:
 ```
@@ -49,12 +41,14 @@ function coinsGame_BruteForce(n, L)
     for sol in partialSolutions:
       # player 1’s turn
       if n % 2 == 0:
-        leftSol = (leftCoin: sol["leftCoin:] + 1, rightCoin: sol["rightCoin"]), value: sol["value"] + L[sol["leftCoin"]]
+        # increment left counter and update value with the removed left coin
+        leftSol = ( leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"] + L[sol["leftCoin"])
         newSolutions.append(leftSol)
-        rightSol = (leftCoin: sol["leftCoin:], rightCoin: sol["rightCoin"] - 1), value: sol["value"] + L[sol["rightCoin"]]
+        # decrement right counter and update value with the removed right coin
+        rightSol = ( leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"] + L[sol["rightCoin"] )
         newSolutions.append(rightSol)
       
-      else
+      else # player 2's turn
         dir = dir(sol["leftCoin"], sol["rightCoin"], L)
         
         if dir == "0":
