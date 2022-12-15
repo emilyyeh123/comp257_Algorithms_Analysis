@@ -27,9 +27,7 @@ function dir(i, j, L)
     return “1”
 ```
 
-Then our brute force algorithm will iterate over every possible set of choices player 1 could make, given
-that player 2 is making the optimal choices. We’ll keep track of each partial solution’s value, and then
-find the maximum of all of these values at the end.
+Then our brute force algorithm will iterate over every possible set of choices player 1 could make, given that player 2 is making the optimal choices. We’ll keep track of each partial solution’s value, and then find the maximum of all of these values at the end.
 
 ```
 function coinsGame_BruteForce(n, L)
@@ -40,12 +38,12 @@ function coinsGame_BruteForce(n, L)
     
     for sol in partialSolutions:
       # player 1’s turn
-      if n % 2 == 0:
+      if i % 2 == 0:
         # increment left counter and update value with the removed left coin
-        leftSol = ( leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"] + L[sol["leftCoin"])
+        leftSol = ( leftCoin: sol["leftCoin"] + 1, rightCoin: sol["rightCoin"], value: sol["value"] + L[sol["leftCoin"]] )
         newSolutions.append(leftSol)
         # decrement right counter and update value with the removed right coin
-        rightSol = ( leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"] + L[sol["rightCoin"] )
+        rightSol = ( leftCoin: sol["leftCoin"], rightCoin: sol["rightCoin"] - 1, value: sol["value"] + L[sol["rightCoin"]] )
         newSolutions.append(rightSol)
       
       else # player 2's turn
@@ -59,13 +57,10 @@ function coinsGame_BruteForce(n, L)
   return maximum value of partialSolutions
 ```
 
-The runtime of this algorithm is O(n<sup>2</sup>(n/2)) because for each of player 1’s n/2 picks, there are two
-different solutions that we have to build, and each solution is of length n.
+The runtime of this algorithm is O(n<sup>2</sup>(n/2)) because for each of player 1’s n/2 picks, there are two different solutions that we have to build, and each solution is of length n.
 
 ## Greedy Approach
-The simplest greedy algorithm for this problem is for player 1 to always take the larger coin available
-(player 2 will still always make the optimal choice, so we still need access to our `DP` array and function
-`dir()` described above).
+The simplest greedy algorithm for this problem is for player 1 to always take the larger coin available (player 2 will still always make the optimal choice, so we still need access to our `DP` array and function `dir()` described above).
 
 ```
 function coinsGame_Greedy(n, L)
@@ -92,16 +87,11 @@ function coinsGame_Greedy(n, L)
   return winnings
 ```
 
-The runtime of this algorithm will be O(n) because there is one for loop with n iterations, and there
-are a constant number of operations within the for loop.
+The runtime of this algorithm will be O(n) because there is one for loop with n iterations, and there are a constant number of operations within the for loop.
 
 
 ## Memoization Approach
-Let `OPT(i, j)` be the amount of winnings you’re guaranteed, regardless of the behavior of player 2, if
-you’re faced with coins `i` through `j` in a row with `i < j`. Then `OPT(i, j)` will be the maximum amount
-that can be won if player 2 plays optimally. If player 1 chooses the left coin, then we can take the
-minimum winnings for player 1 based on whether player 2 chooses the left- or right-most coin. Then
-the recurrence is the following:
+Let `OPT(i, j)` be the amount of winnings you’re guaranteed, regardless of the behavior of player 2, if you’re faced with coins `i` through `j` in a row with `i < j`. Then `OPT(i, j)` will be the maximum amount that can be won if player 2 plays optimally. If player 1 chooses the left coin, then we can take the minimum winnings for player 1 based on whether player 2 chooses the left- or right-most coin. Then the recurrence is the following:
 
 `OPT(i, j) = max( L[i] + min( OPT(i+2, j), OPT(i+1, j−1) ), L[j] + min( OPT(i+1, j−1), OPT(i, j−2) ) )`
 
@@ -121,8 +111,7 @@ function coinsGame_Memoization(L,i, j)
   return M[i,j]
 ```
 
-The memoization array will be of size n × n, and the function itself takes constant time, so this algorithm will be O(n<sup>2</sup>).
-We only need to fill the entries of the array where j ≥ i, but this is still O(n<sup>2</sup>).
+The memoization array will be of size n × n, and the function itself takes constant time, so this algorithm will be O(n<sup>2</sup>). We only need to fill the entries of the array where j ≥ i, but this is still O(n<sup>2</sup>).
 
 ## Dynamic Programming
 Here is the dynamic programming solution. Note that we need to iterate through the array diagonally.
@@ -145,5 +134,8 @@ function coinsGame_DP(n, L)
         DP[i,j] = max(chooseLeft, chooseRight)
 ```
 
-This array is size O(n<sup>2</sup>). We have to iterate diagonally over the array so that we will always have
-access to the entries we need for our recursive formula.
+This array is size O(n<sup>2</sup>). We have to iterate diagonally over the array so that we will always have access to the entries we need for our recursive formula.
+
+A couple of visualizations to better understand how the dynamic programming algorithm works:
+![generic example](/images/dynamic_programming_visual_example.png)
+![example with a list of n=6](/images/dynamic_programming_example_n6.png)
