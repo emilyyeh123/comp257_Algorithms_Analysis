@@ -17,9 +17,7 @@ def chooseCoin_bf(i, j, L, dp_arr):
     if chooseLeft >= chooseRight: return 0
     else: return 1
 
-def coinsGame_bf(n,L):
-    dp_arr = coinsGame_dp(n,L)
-
+def coinsGame_bf(n,L,dp_arr):
     # store player 1's first possible moves as tuples:
     #   (leftIndex, rightIndex, p1 current value)
     # first two possible moves: p1 takes left coin or right coin

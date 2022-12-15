@@ -6,7 +6,7 @@
 # int W optimal value collected by player
 
 from bruteForceApproach import *
-#from greedyApproach import *
+from greedyApproach import *
 from dynamicProgrammingApproach import *
 import time
 import random
@@ -34,13 +34,18 @@ def main():
 
     print("input n = ", n, "\ninput L = ", L, "\n")
 
-    #start_time = time.time()
-    print("\nOptimal Solution Using Brute Force:", coinsGame_bf(n,L))
-    #dp_arr = coinsGame_dp(n,L)
-    #print_dp_matrix(dp_arr)
-    #opt_dp_solution = dp_arr[0][n-1]
-    #print("\nOptimal Solution Using Dynamic Programming: ", opt_dp_solution)
-    #print("\n----- RUNTIME OF THIS ALGO: %s seconds -----" % (time.time() - start_time))
+    start_time = time.time()
+    dp_arr = coinsGame_dp(n,L)
+
+    print("\nOptimal Solution Using Brute Force:", coinsGame_bf(n,L,dp_arr))
+    
+    print("\nOptimal Solution Using Greedy Algo:", coinsGame_greedy(n,L,dp_arr))
+
+    #print_dp_matrix(n,dp_arr)
+    opt_dp_solution = dp_arr[0][n-1]
+    print("\nOptimal Solution Using Dynamic Programming: ", opt_dp_solution)
+    
+    print("----- RUNTIME OF THIS ALGO: %s seconds -----" % (time.time() - start_time))
 
 if __name__ == "__main__":
     main()

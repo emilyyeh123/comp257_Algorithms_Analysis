@@ -32,12 +32,8 @@ def coinsGame_dp(n,L):
 
     return dp_arr
 
-def print_dp_matrix(dp_arr):
+def print_dp_matrix(n,dp_arr):
     print("Matrix:")
     for i in range(n):
         print(dp_arr[i])
-
-def optimal_dp_result(dp_arr):
-    # return the optimal result
-    return dp_arr[0][n-1]
 
