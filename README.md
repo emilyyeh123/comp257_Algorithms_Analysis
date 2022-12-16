@@ -1,6 +1,5 @@
 # COMP 257 Advanced Algorithms Final Project
-
-Overview: choose a problem, design several algorithmic approaches to solve it, implement those solutions, test them, and then recommend which algorithm should be used to solve the problem
+Choose a problem, design several algorithmic approaches to solve it, implement those solutions, test them, and then recommend which algorithm should be used to solve the problem
 
 ### Purpose
 - Practice implementing algorithms discussed in class.
@@ -26,7 +25,7 @@ Overview: choose a problem, design several algorithmic approaches to solve it, i
     1. [Brute Force Approach](/algorithms/bruteForceApproach.py)
     2. [Greedy Approach](/algorithms/greedyApproach.py)
     3. [Dynamic Programming Approach](/algorithms/dynamicProgrammingApproach.py)
-2. Design five test cases of varying sizes, and run each of your algorithms on the test cases
+2. Design five [test cases](/testing) of varying sizes, and run each of your algorithms on the test cases
     1. Check that each approach returns the same answer for each test case. Note that your greedy algorithm is not guaranteed to find the optimal solution. If this is the case, discuss why the greedy algorithm returns a different answer than the other algorithms.
     2. Time each of your algorithms on each test case and report their runtimes (note: if some of your approaches take too long on large test cases, you can just run them on the small test cases. Justify this by referring to the big O runtime you calculated for the algorithm).
     3. Make a plot with the size of the test case on the x axis, and time on the y axis. For each algorithm, plot the amount of time it took for each test case. You can make this plot in your code, or using some other software such as Excel.
