@@ -5,8 +5,6 @@ The [Testing Folder](/testing) has code used to generate 5 randomized lists of v
 
 Additionally, I created two manual testcases to match the examples I used in the [finalProjectProposal.md](finalProjectProposal.md). These were used to prove that my algorithms functioned the same way that my examples showed they would.
 
-All testcase outputs can be found in the [algorithms README.md](/algorithms/README.md)
-
 ## [Output](/algorithms/README.md) Analysis
 In the smaller testcases, I  opted to print the DP array to show how the dynamic programming algorithm works. I also used it to match my handwritten examples in the [finalProjectProposal.md](finalProjectProposal.md). Doing so allowed me to confirm that my implementation of the algorithm worked as expected.
 

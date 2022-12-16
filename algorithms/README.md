@@ -3,9 +3,9 @@ I designed my algorithms based off the pseudocode in the [finalProjectProposal.m
 
 Besides the issues I had with brute force, all the other algorithms turned out to be very simple as they were all variations of the same concept. The biggest difference was in how data was stored and retrieved.
 
-## Output of main.py for all test cases
+## Output of main.py
 
-### My Test Case 1
+### My Test Case  1 
 
 ```
 input n =  6 
@@ -13,17 +13,17 @@ input L =  [3, 4, 1, 2, 5, 4]
 
 
 Optimal Solution Using Brute Force: 10
------ RUNTIME OF THIS ALGO: 5.435943603515625e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 2.4318695068359375e-05 seconds -----
 
 
 Optimal Solution Using Greedy Algo: 9
------ RUNTIME OF THIS ALGO: 2.8371810913085938e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 5.9604644775390625e-06 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  10
------ RUNTIME OF THIS ALGO: 1.8596649169921875e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 1.6689300537109375e-05 seconds -----
 
-DP Array:
+Matrix:
 [3, 4, 4, 6, 9, 10]
 [0, 4, 4, 5, 7, 10]
 [0, 0, 1, 2, 6, 6]
@@ -35,7 +35,7 @@ DP Array:
 
 
 
-### My Test Case 2
+### My Test Case  2 
 
 ```
 input n =  9 
@@ -43,17 +43,17 @@ input L =  [3, 2, 8, 7, 4, 3, 1, 2, 5]
 
 
 Optimal Solution Using Brute Force: 19
------ RUNTIME OF THIS ALGO: 0.0001652240753173828 seconds -----
+----- RUNTIME OF THIS ALGO: 4.839897155761719e-05 seconds -----
 
 
 Optimal Solution Using Greedy Algo: 19
------ RUNTIME OF THIS ALGO: 8.916854858398438e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 6.4373016357421875e-06 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  19
------ RUNTIME OF THIS ALGO: 7.43865966796875e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 3.361701965332031e-05 seconds -----
 
-DP Array:
+Matrix:
 [3, 3, 10, 11, 13, 15, 15, 16, 19]
 [0, 2, 8, 9, 12, 12, 13, 14, 18]
 [0, 0, 8, 8, 12, 12, 13, 14, 17]
@@ -68,7 +68,7 @@ DP Array:
 
 
 
-### Random Test Case 1
+### Random Test Case  3 
 
 ```
 input n =  10 
@@ -76,17 +76,17 @@ input L =  [3, 2, 2, 2, 4, 4, 1, 1, 2, 3]
 
 
 Optimal Solution Using Brute Force: 12
------ RUNTIME OF THIS ALGO: 0.0001583099365234375 seconds -----
+----- RUNTIME OF THIS ALGO: 7.414817810058594e-05 seconds -----
 
 
 Optimal Solution Using Greedy Algo: 12
------ RUNTIME OF THIS ALGO: 6.318092346191406e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 6.4373016357421875e-06 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  12
------ RUNTIME OF THIS ALGO: 6.365776062011719e-05 seconds -----
+----- RUNTIME OF THIS ALGO: 3.933906555175781e-05 seconds -----
 
-DP Array:
+Matrix:
 [3, 3, 5, 5, 8, 9, 10, 10, 12, 12]
 [0, 2, 2, 4, 6, 8, 8, 9, 9, 12]
 [0, 0, 2, 2, 6, 6, 7, 7, 9, 10]
@@ -102,7 +102,7 @@ DP Array:
 
 
 
-### Random Test Case 2
+### Random Test Case  4 
 
 ```
 input n =  20 
@@ -110,17 +110,17 @@ input L =  [4, 3, 1, 2, 3, 1, 1, 5, 3, 1, 3, 1, 5, 3, 2, 3, 4, 4, 4, 5]
 
 
 Optimal Solution Using Brute Force: 32
------ RUNTIME OF THIS ALGO: 0.003698587417602539 seconds -----
+----- RUNTIME OF THIS ALGO: 0.0028874874114990234 seconds -----
 
 
 Optimal Solution Using Greedy Algo: 27
------ RUNTIME OF THIS ALGO: 0.00019598007202148438 seconds -----
+----- RUNTIME OF THIS ALGO: 1.1920928955078125e-05 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  32
------ RUNTIME OF THIS ALGO: 0.00018787384033203125 seconds -----
+----- RUNTIME OF THIS ALGO: 0.00014925003051757812 seconds -----
 
-DP Array:
+Matrix:
 [4, 4, 5, 6, 8, 8, 8, 12, 12, 13, 15, 15, 18, 20, 19, 23, 22, 27, 26, 32]
 [0, 3, 3, 4, 5, 6, 7, 9, 11, 11, 12, 13, 16, 16, 19, 18, 23, 22, 27, 27]
 [0, 0, 1, 2, 4, 4, 4, 9, 8, 9, 11, 11, 15, 16, 15, 19, 19, 23, 23, 28]
@@ -146,7 +146,7 @@ DP Array:
 
 
 
-### Random Test Case 3
+### Random Test Case  5 
 
 ```
 input n =  35 
@@ -154,22 +154,22 @@ input L =  [1, 2, 5, 2, 1, 1, 2, 5, 1, 4, 2, 2, 1, 2, 3, 1, 1, 3, 5, 5, 1, 1, 4,
 
 
 Optimal Solution Using Brute Force: 40
------ RUNTIME OF THIS ALGO: 0.29646968841552734 seconds -----
+----- RUNTIME OF THIS ALGO: 0.2926654815673828 seconds -----
 
 
 Optimal Solution Using Greedy Algo: 35
------ RUNTIME OF THIS ALGO: 0.0003731250762939453 seconds -----
+----- RUNTIME OF THIS ALGO: 1.4781951904296875e-05 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  40
------ RUNTIME OF THIS ALGO: 0.0003452301025390625 seconds -----
+----- RUNTIME OF THIS ALGO: 0.0003514289855957031 seconds -----
 
 ```
 
 
 
 
-### Random Test Case 4
+### Random Test Case  6 
 
 ```
 input n =  50 
@@ -177,35 +177,38 @@ input L =  [3, 4, 3, 3, 2, 4, 5, 4, 3, 2, 1, 5, 4, 2, 1, 3, 4, 2, 5, 5, 1, 3, 4,
 
 
 Optimal Solution Using Brute Force: 84
------ RUNTIME OF THIS ALGO: 66.99098682403564 seconds -----
+----- RUNTIME OF THIS ALGO: 62.258830308914185 seconds -----
 
 
 Optimal Solution Using Greedy Algo: 78
------ RUNTIME OF THIS ALGO: 0.0007953643798828125 seconds -----
+----- RUNTIME OF THIS ALGO: 2.002716064453125e-05 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  84
------ RUNTIME OF THIS ALGO: 0.0007741451263427734 seconds -----
+----- RUNTIME OF THIS ALGO: 0.0007696151733398438 seconds -----
 
 ```
 
 
 
 
-### Random Test Case 5
+### Random Test Case  7 
 
 ```
 input n =  100 
 input L =  [1, 4, 4, 3, 3, 4, 4, 5, 1, 2, 4, 5, 3, 2, 5, 4, 5, 1, 5, 1, 3, 5, 1, 2, 1, 5, 1, 2, 3, 3, 2, 1, 3, 1, 3, 5, 1, 2, 2, 3, 2, 1, 4, 2, 1, 4, 3, 5, 3, 2, 4, 5, 2, 2, 3, 3, 2, 2, 1, 1, 4, 1, 1, 4, 1, 4, 4, 1, 2, 1, 3, 3, 4, 1, 2, 1, 5, 1, 1, 5, 5, 3, 4, 4, 1, 2, 2, 1, 3, 4, 1, 2, 4, 3, 3, 2, 5, 4, 3, 4] 
 
 Could not perform brute force on test case of this size.
+----- RUNTIME OF THIS ALGO: 0.0030906200408935547 seconds -----
+
 
 Optimal Solution Using Greedy Algo: 129
------ RUNTIME OF THIS ALGO: 0.006398200988769531 seconds -----
+----- RUNTIME OF THIS ALGO: 3.361701965332031e-05 seconds -----
 
 
 Optimal Solution Using Dynamic Programming:  142
------ RUNTIME OF THIS ALGO: 0.004967927932739258 seconds -----
+----- RUNTIME OF THIS ALGO: 0.0030133724212646484 seconds -----
 
 ```
+
 
