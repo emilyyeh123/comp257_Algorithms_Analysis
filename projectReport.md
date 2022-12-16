@@ -14,7 +14,9 @@ In the smaller testcases, I  opted to print the DP array to show how the dynamic
 Looking at the results, you might notice that the greedy algorithm does not always produce the same results as the Brute Force or Dynamic Programming method. This is because the greedy algorithm always opts for directly promising results. It fails to look ahead and take into consideration the possibility of skipping the current larger value to ultimately get a larger return after p2 takes its next turn. The greedy algorithm returns the correct result out of sheer luck of the order of the given list. Any other order may throw it off and make it produce the wrong results. 
 
 ### Ignored Test Cases
-My system crashed when I tried to run the brute force algorithm on the testcase with 100 elements. The brute force algorithm has an exponentially growing runtime. As you might recall from the final project proposal, we found that brute force produced a runtime of O(n<sup>2</sup>(n/2)). It might help to look at the plot below to understand this better. As you can see, the line for brute force grows so quickly that the data points for 35 and 50 elements had to be excluded from the plot. I can only imagine how much time the testcase of 100 elements would take if 50 elements took over a minute.
+My system crashed when I tried to run the brute force algorithm on the testcase with 100 elements. The brute force algorithm has an exponentially growing runtime. As you might recall from the final project proposal, we found that brute force produced a runtime of O(n<sup>2</sup>(n/2)). It requires too much memory and takes far too long. 
+
+Looking at the plot below may help to understand the runtime better. As you can see, the line for brute force grows so quickly that the data points for 35 and 50 elements had to be excluded from the plot. I can only imagine how much time the testcase of 100 elements would take if 50 elements took over a minute.
 
 ## Plot
 The excel sheet used to create the plot can be found in [Plot](/plot).
