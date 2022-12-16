@@ -1,4 +1,9 @@
-# Output of main.py for all test cases
+# Designing the Algorithms
+I designed my algorithms based off the pseudocode in the [finalProjectProposal.md](finalProjectProposal.md). Originally, I had some trouble comprehending how these algorithms worked, but after writing out examples, I was able to understand them much better. I started with DP because the array was used in all other algorithms. Then, I moved on to brute force. This method gave me the most trouble. I struggled a lot trying to figure out how to store new values while iterating through the current values, but soon realized that all I needed was a temporary variable that I could reset and update as needed. Writing it out gave me a much clearer picture of the way it worked. Then, after testing my algorithm on various test cases, I came across an issue where my program would quit due to an out of range index. I soon realized that the p2_choice function would index i+2 which didn't work if the current index was already at n-1. Line 44 in [bruteForceApproach.py](bruteForceApproach.py) shows the solution to this where I created a simple if-statement. If the current index is already at n-1 or n-2, don't perform player 2's move.
+
+Besides the issues I had with brute force, all the other algorithms turned out to be very simple as they were all variations of the same concept. The biggest difference was in how data was stored and retrieved.
+
+## Output of main.py for all test cases
 
 ### My Test Case 1
 
@@ -19,7 +24,6 @@ Optimal Solution Using Dynamic Programming:  10
 ----- RUNTIME OF THIS ALGO: 1.8596649169921875e-05 seconds -----
 
 DP Array:
-Matrix:
 [3, 4, 4, 6, 9, 10]
 [0, 4, 4, 5, 7, 10]
 [0, 0, 1, 2, 6, 6]
@@ -50,7 +54,6 @@ Optimal Solution Using Dynamic Programming:  19
 ----- RUNTIME OF THIS ALGO: 7.43865966796875e-05 seconds -----
 
 DP Array:
-Matrix:
 [3, 3, 10, 11, 13, 15, 15, 16, 19]
 [0, 2, 8, 9, 12, 12, 13, 14, 18]
 [0, 0, 8, 8, 12, 12, 13, 14, 17]
@@ -84,7 +87,6 @@ Optimal Solution Using Dynamic Programming:  12
 ----- RUNTIME OF THIS ALGO: 6.365776062011719e-05 seconds -----
 
 DP Array:
-Matrix:
 [3, 3, 5, 5, 8, 9, 10, 10, 12, 12]
 [0, 2, 2, 4, 6, 8, 8, 9, 9, 12]
 [0, 0, 2, 2, 6, 6, 7, 7, 9, 10]
@@ -119,7 +121,6 @@ Optimal Solution Using Dynamic Programming:  32
 ----- RUNTIME OF THIS ALGO: 0.00018787384033203125 seconds -----
 
 DP Array:
-Matrix:
 [4, 4, 5, 6, 8, 8, 8, 12, 12, 13, 15, 15, 18, 20, 19, 23, 22, 27, 26, 32]
 [0, 3, 3, 4, 5, 6, 7, 9, 11, 11, 12, 13, 16, 16, 19, 18, 23, 22, 27, 27]
 [0, 0, 1, 2, 4, 4, 4, 9, 8, 9, 11, 11, 15, 16, 15, 19, 19, 23, 23, 28]
