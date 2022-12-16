@@ -22,7 +22,7 @@ The excel sheet used to create the plot can be found in [Plot](/plot).
 Below is an image of the data used to plot the size of the test cases on the x axis, and time on the y axis. The graph does not include the last two runtimes of the brute force algorithm. This is because those values are too large in relation to the rest of the runtimes. If I included them in the graph, the plot would be too zoomed out for us to be able to note the differences in the smaller testcases. 
 
 From the project proposal, we concluded each runtime to be:
-- Brute Force: $O(n {n \choose 2})$
+- Brute Force: $O(n^2 {n \choose 2})$
 - Greedy: O(n)
 - Dynamic Programming: O(n<sup>2</sup>)
 
