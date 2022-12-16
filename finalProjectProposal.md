@@ -71,7 +71,7 @@ I tested this on a sample list L = [3,4,1,2,5,4]. I wrote out the tuples output 
 
 <kbd> <img src=/images/n6_bruteForce_example.png alt="" width="500"/> </kbd>
 
-From the example, we can see how the algorithm would produce a runtime of O(n<sup>2</sup>(n/2)). P1's options grow exponentially each time it gains new values.
+From the example, we can see how the algorithm would produce a runtime of $O(n {n \choose 2})$. P1's options grow exponentially each time it gains new values.
 
 ## Greedy Approach
 The greedy algorithm takes a more direct approach where p1 will always take the larger available coin. P2 will continue choosing the optimal solution based off p1's move. This approach does not take a whole lot of memory as it simply takes the first number that would seem to be largest, adds that value to the current sum, then increments/decrements the appropriate counter.
