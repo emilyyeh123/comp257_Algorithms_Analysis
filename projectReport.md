@@ -1,9 +1,9 @@
 # Project Report
 
 ## Test Cases
-The [Testing Folder](/testing) has code used to generate 5 randomized lists of varying sizes. I chose to use test cases of size 10, 20, 35, 50, and 100. I generated lists of random elements between a range of 1through 5. I printed the random lists to [testCases.md](/testing/testCases.md) and copied over the contents to [main.py](/algorithms/main.py) as necessary.
+The [Testing Folder](/testing) has code used to generate 5 randomized lists of varying sizes. I chose to use test cases with sizes 10, 20, 35, 50, and 100. This was to show how the runtime grows for incrementally larger testcases. I generated lists with arbitrary random values between 1 through 5. I printed the random lists to [testCases.md](/testing/testCases.md) and copied over the contents for use in [main.py](/algorithms/main.py).
 
-Additionally, I created two manual testcases to match the examples I used in the [finalProjectProposal.md](finalProjectProposal.md). These were used to prove that my algorithms functioned the same way that my examples showed they would.
+I used an additional two manually generated testcases to match the examples I used in the [finalProjectProposal.md](finalProjectProposal.md). These were used to prove that my algorithms functioned the same way that my examples showed they would.
 
 ## [Output](/algorithms/README.md) Analysis
 In the smaller testcases, I  opted to print the DP array to show how the dynamic programming algorithm works. I also used it to match my handwritten examples in the [finalProjectProposal.md](finalProjectProposal.md). Doing so allowed me to confirm that my implementation of the algorithm worked as expected.
